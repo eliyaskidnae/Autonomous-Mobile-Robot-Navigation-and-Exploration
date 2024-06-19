@@ -1,0 +1,21 @@
+digraph pastafarianism {
+ordering=out;
+graph [fontname="times-roman"];
+node [fontname="times-roman"];
+edge [fontname="times-roman"];
+"Frontier Exploration" [fillcolor=orange, fontcolor=black, fontsize=9, label="Ⓜ Frontier Exploration", shape=box, style=filled];
+Invertor [fillcolor=ghostwhite, fontcolor=black, fontsize=9, label=Invertor, shape=ellipse, style=filled];
+"Frontier Exploration" -> Invertor;
+explore_finish [fillcolor=gray, fontcolor=black, fontsize=9, label=explore_finish, shape=ellipse, style=filled];
+Invertor -> explore_finish;
+Explore_Selec [fillcolor=cyan, fontcolor=black, fontsize=9, label="Ⓜ Explore_Selec", shape=octagon, style=filled];
+"Frontier Exploration" -> Explore_Selec;
+explore_list [fillcolor=gray, fontcolor=black, fontsize=9, label=explore_list, shape=ellipse, style=filled];
+Explore_Selec -> explore_list;
+set_exploration [fillcolor=gray, fontcolor=black, fontsize=9, label=set_exploration, shape=ellipse, style=filled];
+Explore_Selec -> set_exploration;
+"plan path" [fillcolor=gray, fontcolor=black, fontsize=9, label="plan path", shape=ellipse, style=filled];
+"Frontier Exploration" -> "plan path";
+"plan and follow path" [fillcolor=gray, fontcolor=black, fontsize=9, label="plan and follow path", shape=ellipse, style=filled];
+"Frontier Exploration" -> "plan and follow path";
+}

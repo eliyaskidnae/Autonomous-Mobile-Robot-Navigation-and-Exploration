@@ -1,0 +1,14 @@
+<launch>
+    <param name="~frame_id" type="string" value="odom" />
+    <include file="$(find turtlebot_online_path_planning)/launch/turtlebot3_home_sim.launch" />
+    <node pkg="turtlebot_online_path_planning" type="laser_scan_to_point_cloud_node.py" name="laserscan_to_pointcloud"/>
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap" output="screen"/>
+
+     <arg name="is_rrt_star" default="False" />
+     <arg name="is_unknown_valid" default="True" />
+    <!-- <node name="planning" pkg="frontier_exploration" type="turtlebot_online_path_planning_node.py" output="screen">
+        <param name="is_rrt_star" value="$(arg is_rrt_star)" />
+        <param name="is_unknown_valid" value="$(arg is_unknown_valid)" />
+    </node> -->
+    <!--node pkg="octomap_server" type="octomap_server_node" args="$(find turtlebot_online_path_planning)/stage4.bt" name="octomap" output="screen"-->
+</launch>

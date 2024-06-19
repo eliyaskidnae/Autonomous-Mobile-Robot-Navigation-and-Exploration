@@ -1,0 +1,21 @@
+<launch>
+    <param name="~frame_id" type="string" value="world_ned" />
+    <!-- <include file="$(find turtlebot_simulation)/launch/kobuki_motion_planning_nogpu.launch" />  -->
+    <include file="$(find frontier_exploration)/launch/kobuki_motion_planning.launch" />
+    <!-- <include file="$(find turtlebot_simulation)/launch/turtlebot_integration.launch" /> -->
+    <node pkg="frontier_exploration" type="odom.py" name="odom" output="screen"/> 
+    <node pkg="frontier_exploration" type="laser_scan_to_point_cloud_node.py" name="laserscan_to_pointcloud"/>
+    <node pkg="frontier_exploration" type="behaviour_tree_node.py" name="behaviour_tree_node" output="screen"/> 
+    
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap" output="screen"/>
+    <arg name="is_rrt_star" default="False" />
+    <arg name="is_unknown_valid" default="True" />
+    <node name="planning" pkg="frontier_exploration" type="turtlebot_online_path_planning_node.py" output="screen">
+        <param name="is_rrt_star" value="$(arg is_rrt_star)" />
+        <param name="is_unknown_valid" value="$(arg is_unknown_valid)" />
+    </node>
+    <node name="exploration" pkg="frontier_exploration" type="frontier_exploration_node.py" output="screen">
+    </node>
+   
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find frontier_exploration)/config/planning.rviz"/>
+</launch>
